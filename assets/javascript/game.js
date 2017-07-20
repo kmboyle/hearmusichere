@@ -12,7 +12,7 @@ var zipCode;
 //get user data input for artist name
 artist = $("#user-input").val().trim();
 //get user data input for zip code
-var zipCode = $("#location-input").val().trim();
+var zipCode = parseInt($("#user-area").val().trim());
 console.log(zipCode);
 var APIKEY = "ODE3MjUzMnwxNTAwMjI5MjgxLjg5";
 //url for API call to get artist upcoming events
@@ -50,16 +50,16 @@ for (var i = 0; i < 10; i++){
 url: performerURL,
 method: "GET"}).done(function(response){
 console.log (response);
-artistID = response.performers[0].id;
+artistID = parseInt(response.performers[0].id);
 console.log(artistID);
 
 
-var localURL = "https://api.seatgeek.com/2/recommendations?performers.id=" + artistID + "&postal_code=" + zipCode + "&client_id=ODE3MjUzMnwxNTAwMjI5MjgxLjg5";
+var localURL = "https://api.seatgeek.com/2/recommendations?performers.id=" + artistID + "&geoip=true&client_id=ODE3MjUzMnwxNTAwMjI5MjgxLjg5";
 
 $.ajax({
 url: localURL,
 method: "GET"}).done(function(response){
-console.log ("recommendations: " + response);
+console.log (response);
 });
 });
 

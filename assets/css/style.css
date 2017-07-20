@@ -5,7 +5,9 @@
 .nav {
 float: right;
 }
-
+#map {
+        height: 100%;
+      }
 
 /* Media Query styles
 -------------------------------------------------- */

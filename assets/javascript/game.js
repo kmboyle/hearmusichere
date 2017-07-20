@@ -1,5 +1,14 @@
 $(document).ready(function(){
 
+var map;
+function initMap() {
+	
+  map = new google.maps.Map(document.getElementById('map'), {
+  zoom: 2,
+  center: new google.maps.LatLng(2.8,-187.3),
+  mapTypeId: 'terrain'
+		});
+}
 
 function eventFinder(){
 //seatgeek.com
@@ -27,25 +36,27 @@ var link = [];
 var showDate = [];
 //convert time and date using moment.js
 var convertedDate = [];
+//name of similar artist plying locally
 var localArtist= [];
+//array to hold lon and lat of location to put on map
+var lon = [];
+var lat = [];
 
 $.ajax({
 url: URL,
 method: "GET"}).done(function(response){
 console.log (response);
-//store upcoming tour locations and display to user
+//store Artists upcoming tour locations and display to user
 for (var i = 0; i < 10; i++){
-	// if (artist.indexOf(0) === response.events[i].title.indexOf(0)){
-			concerts[i] = response.events[i].venue.extended_address;
-			link[i] = response.events[i].venue.url;
-			showDate[i]=response.events[i].datetime_local;
-			convertedDate[i] =moment(showDate[i]).format('  dddd MMM Do, YYYY hh:mm a');
-			console.log("converted: " + convertedDate[i]);
-			$("#tour-location").append($("<a href=" + link[i] + ">" + concerts[i]+ "</a>  "));
-			$("#tour-location").append(convertedDate[i] + "<br>");
-			}
-		//}
-	});
+ concerts[i] = response.events[i].venue.extended_address;
+ link[i] = response.events[i].venue.url;
+ showDate[i]=response.events[i].datetime_local;
+ convertedDate[i] =moment(showDate[i]).format('  dddd MMM Do, YYYY hh:mm a');
+ console.log("converted: " + convertedDate[i]);
+ $("#tour-location").append($("<a href=" + link[i] + ">" + concerts[i]+ "</a>  "));
+ $("#tour-location").append(convertedDate[i] + "<br>");
+ }
+});
 
 	$.ajax({
 url: performerURL,
@@ -53,6 +64,7 @@ method: "GET"}).done(function(response){
 console.log (response);
 artistID = parseInt(response.performers[0].id);
 console.log(artistID);
+});
 
 //API call for FIND SIMILAR ARTISTS IN YOUR AREA SHOWS
 var localURL = "https://api.seatgeek.com/2/recommendations?performers.id=" + artistID + "&geoip=true&client_id=ODE3MjUzMnwxNTAwMjI5MjgxLjg5";
@@ -62,19 +74,38 @@ url: localURL,
 method: "GET"}).done(function(response){
 console.log (response);
 for (var i = 0; i < 10; i++){
-			concerts[i] = response.recommendations[i].event.venue.name;
-			link[i] = response.recommendations[i].event.url;
-			showDate[i]=response.recommendations[i].event.datetime_local;
-			localArtist [i] = response.recommendations[i].event.title;			
-			convertedDate[i] =moment(showDate[i]).format('  dddd MMM Do, YYYY hh:mm a');
-			console.log("converted: " + convertedDate[i]);
-			$("#near-you").append($("<h2>" + localArtist[i] + "  </h2><a href=" + link[i] + ">" + concerts[i]+ "</a>  "));
-			$("#near-you").append(convertedDate[i] + "<br>");
+ //get upcoming shows based on similar artists playing locally
+ concerts[i] = response.recommendations[i].event.venue.name;
+ link[i] = response.recommendations[i].event.url;
+ showDate[i]=response.recommendations[i].event.datetime_local;
+ localArtist [i] = response.recommendations[i].event.title;			
+ convertedDate[i] =moment(showDate[i]).format('  dddd MMM Do, YYYY hh:mm a');
+ console.log("converted: " + convertedDate[i]);
+ $("#near-you").append($("<h2>" + localArtist[i] + "  </h2><a href=" + link[i] + ">" + concerts[i]+ "</a>  "));
+ $("#near-you").append(convertedDate[i] + "<br>");
+ //get venue's coordinates
+ lon[i] = response.recommendations[i].event.venue.location.lon;
+ lat[i] = response.recommendations[i].event.venue.location.lat;
 			}
-			
-});
 });
 
+// var mapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuLlYRZMv5nnlPQqKpyua8XfZ_yk3O9eE&callback=initMap";
+// $.ajax({
+// url: mapURL,
+// method: "GET"}).done(function(response){
+ //function call to take locations array and put it on the google map
+
+ for (var i = 0; i < 10; i++) {
+console.log("test2");
+  
+   var latLng = new google.maps.LatLng(lat[i],lon[i]);
+   console.log(lat,lon);
+   var marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+    });
+  }
+}
 //Khalid's ajax call to get events based on city and state (currently returns venues in your area)
     $("#add-city").on("click", function(event) {
         event.preventDefault();
@@ -93,9 +124,7 @@ for (var i = 0; i < 10; i++){
 
 
      
-        });
-
-}
+		});
 
 
 

@@ -12,7 +12,7 @@ var zipCode;
 //get user data input for artist name
 artist = $("#user-input").val().trim();
 //get user data input for zip code
-var zipCode = parseInt($("#user-area").val().trim());
+//var zipCode = parseInt($("#user-area").val().trim());
 console.log(zipCode);
 var APIKEY = "ODE3MjUzMnwxNTAwMjI5MjgxLjg5";
 //url for API call to get artist upcoming events
@@ -27,6 +27,7 @@ var link = [];
 var showDate = [];
 //convert time and date using moment.js
 var convertedDate = [];
+var localArtist= [];
 
 $.ajax({
 url: URL,
@@ -53,13 +54,24 @@ console.log (response);
 artistID = parseInt(response.performers[0].id);
 console.log(artistID);
 
-
+//API call for FIND SIMILAR ARTISTS IN YOUR AREA SHOWS
 var localURL = "https://api.seatgeek.com/2/recommendations?performers.id=" + artistID + "&geoip=true&client_id=ODE3MjUzMnwxNTAwMjI5MjgxLjg5";
 
 $.ajax({
 url: localURL,
 method: "GET"}).done(function(response){
 console.log (response);
+for (var i = 0; i < 10; i++){
+			concerts[i] = response.recommendations[i].event.venue.name;
+			link[i] = response.recommendations[i].event.url;
+			showDate[i]=response.recommendations[i].event.datetime_local;
+			localArtist [i] = response.recommendations[i].event.title;			
+			convertedDate[i] =moment(showDate[i]).format('  dddd MMM Do, YYYY hh:mm a');
+			console.log("converted: " + convertedDate[i]);
+			$("#near-you").append($("<h2>" + localArtist[i] + "  </h2><a href=" + link[i] + ">" + concerts[i]+ "</a>  "));
+			$("#near-you").append(convertedDate[i] + "<br>");
+			}
+			
 });
 });
 

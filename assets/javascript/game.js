@@ -10,7 +10,7 @@ var artist;
 var artistID;
 var zipCode;
 //get user data input for artist name
-artist = $("#artist-input").val().trim();
+artist = $("#user-input").val().trim();
 //get user data input for zip code
 var zipCode = $("#location-input").val().trim();
 console.log(zipCode);
@@ -52,6 +52,15 @@ method: "GET"}).done(function(response){
 console.log (response);
 artistID = response.performers[0].id;
 console.log(artistID);
+
+
+var localURL = "https://api.seatgeek.com/2/recommendations?performers.id=" + artistID + "&postal_code=" + zipCode + "&client_id=ODE3MjUzMnwxNTAwMjI5MjgxLjg5";
+
+$.ajax({
+url: localURL,
+method: "GET"}).done(function(response){
+console.log ("recommendations: " + response);
+});
 });
 
 //Khalid's ajax call to get events based on city and state (currently returns venues in your area)
@@ -74,13 +83,6 @@ console.log(artistID);
      
         });
 
-var localURL = "https://api.seatgeek.com/2/recommendations?performers.id=" + artistID + "&postal_code=" + zipCode + "&client_id=ODE3MjUzMnwxNTAwMjI5MjgxLjg5";
-
-$.ajax({
-url: localURL,
-method: "GET"}).done(function(response){
-console.log ("recommendations: " + response);
-});
 }
 
 
@@ -88,7 +90,7 @@ console.log ("recommendations: " + response);
 function artistResult(){
 	//store user search parameter
 	var artist;
-	artist = $("#artist-input").val().trim();
+	artist = $("#user-input").val().trim();
 	var artistURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist + "&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
 
 $.ajax({
@@ -140,7 +142,7 @@ function findSimilar(){
 
 	//store user search parameter
 	var artist;
-	artist = $("#artist-input").val().trim();
+	artist = $("#user-input").val().trim();
 	var similarURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" + artist + "&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
 
 
@@ -163,20 +165,23 @@ function findSimilar(){
 		});
 }
 
-
-$("#add-artist").on("click",function(event){
+//when user clicks button for artist name
+$("#get-results").on("click",function(event){
 	event.preventDefault();
 	artistResult();
 	eventFinder();
 });
+//when user clicks button for artists similar to name the put
 $("#similar-artists").on("click",function(event){
 	event.preventDefault();
 	findSimilar();
 });
+//when user adds their location
 $("#add-location").on("click",function(event){
 	event.preventDefault();
 	
 });
+//when user clicks button for top artists
 $("#top-artists").on("click",function(event){
 	event.preventDefault();
 	console.log("yo");

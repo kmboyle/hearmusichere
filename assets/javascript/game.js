@@ -84,8 +84,8 @@ for (var i = 0; i < 10; i++){
  $("#near-you").append(convertedDate[i] + "<br>");
  //get venue's coordinates
  lon[i] = response.recommendations[i].event.venue.location.lon;
- lat[i] = response.recommendations[i].event.venue.location.lat;
-			}
+ lat[i] = response.recommendations[i].event.venue.location.lat;			
+}
   });
 });
 //this call does not work
@@ -100,11 +100,8 @@ for (var i = 0; i < 10; i++){
 
  for (var i = 0; i < 10; i++) {
 console.log("test2");
-  
-   var latLng = new google.maps.LatLng(lat[i],lon[i]);
-   console.log(lat,lon);
-   var marker = new google.maps.Marker({
-    position: latLng,
+  var marker = new google.maps.Marker({
+    position: (lat[i], lon[i]),
     map: map
     });
   }

@@ -1,5 +1,4 @@
-$(document).ready(function(){
-
+//map needs to load before jquery document.ready
 var map;
 function initMap() {
 	
@@ -9,6 +8,8 @@ function initMap() {
   mapTypeId: 'terrain'
 		});
 }
+
+$(document).ready(function(){
 
 function eventFinder(){
 //seatgeek.com
@@ -58,14 +59,12 @@ for (var i = 0; i < 10; i++){
  }
 });
 
-	$.ajax({
+$.ajax({
 url: performerURL,
 method: "GET"}).done(function(response){
 console.log (response);
 artistID = parseInt(response.performers[0].id);
 console.log(artistID);
-});
-
 //API call for FIND SIMILAR ARTISTS IN YOUR AREA SHOWS
 var localURL = "https://api.seatgeek.com/2/recommendations?performers.id=" + artistID + "&geoip=true&client_id=ODE3MjUzMnwxNTAwMjI5MjgxLjg5";
 
@@ -87,13 +86,17 @@ for (var i = 0; i < 10; i++){
  lon[i] = response.recommendations[i].event.venue.location.lon;
  lat[i] = response.recommendations[i].event.venue.location.lat;
 			}
+  });
 });
-
+//this call does not work
+//index.html:1 XMLHttpRequest cannot load https://maps.googleapis.com/maps/api/js?key=AIzaSyAuLlYRZMv5nnlPQqKpyua8XfZ_yk3O9eE&callback=initMap. 
+//No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.
 // var mapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuLlYRZMv5nnlPQqKpyua8XfZ_yk3O9eE&callback=initMap";
 // $.ajax({
 // url: mapURL,
 // method: "GET"}).done(function(response){
- //function call to take locations array and put it on the google map
+//  //function call to take locations array and put it on the google map
+//  console.log(response);
 
  for (var i = 0; i < 10; i++) {
 console.log("test2");
@@ -105,7 +108,8 @@ console.log("test2");
     map: map
     });
   }
-}
+// });
+};
 //Khalid's ajax call to get events based on city and state (currently returns venues in your area)
     $("#add-city").on("click", function(event) {
         event.preventDefault();

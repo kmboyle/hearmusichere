@@ -5,12 +5,14 @@
 .nav {
 float: right;
 }
-#map {
-        height: 100%;
-      }
 
 /* Media Query styles
 -------------------------------------------------- */
+#map {
+      
+        height: 400px;
+        width: 100%;
+      }
 
 /** phone in landscape **/
 @media only screen 

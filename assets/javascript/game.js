@@ -1,4 +1,19 @@
-//map needs to load before jquery document.ready
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBhkI41zjg76ogdJS04uLRMxi4HdmU8WeU",
+    authDomain: "hearmusichere-70e5c.firebaseapp.com",
+    databaseURL: "https://hearmusichere-70e5c.firebaseio.com",
+    projectId: "hearmusichere-70e5c",
+    storageBucket: "",
+    messagingSenderId: "579170769386"
+  };
+  firebase.initializeApp(config);
+
+  //creat a database reference
+  var databsae = firebase.database();
+
+  //map needs to load before jquery document.ready
 var map;
 function initMap() {
 	
@@ -10,6 +25,32 @@ function initMap() {
 }
 
 $(document).ready(function(){
+
+//This is the important function!!! We can change the id's as necessary 
+console.log( "ready!" );
+
+
+$(document).on('click' , "#get-results" , function(event){
+ 
+        event.preventDefault();
+       
+      //generating the youtube video based on user search  
+	 var baseUrl = 'http://www.youtube.com/embed?listType=search&list=';
+	 var searchField = $("#user-input").val();
+	 var targetUrl = baseUrl + searchField;
+	 
+	 $("#yourIframe").attr("src", targetUrl);
+
+	 //this is generating the lyric link for user search
+	var baseUrl = 'http://search.azlyrics.com/search.php?q=';
+	 var searchField = $("#user-input").val();
+	 var targetUrl = baseUrl + searchField;
+	 
+	 $("#lLink").attr("href", targetUrl);
+ 	
+ 	
+});
+
 
 function eventFinder(){
 //seatgeek.com
@@ -148,6 +189,9 @@ $.ajax({
 		 //save artist image
 		 var img = response.artist.image[3]["#text"];
 		 console.log(img);
+		//   database.ref().set({
+		// 	  image:img 
+		//   });
 		//save image to an html img element
 		var newImage = $("<img>").attr("src", img);
 		console.log(newImage);

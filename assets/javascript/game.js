@@ -71,7 +71,6 @@ var localURL = "https://api.seatgeek.com/2/recommendations?performers.id=" + art
 $.ajax({
 url: localURL,
 method: "GET"}).done(function(response){
-console.log (response);
 for (var i = 0; i < 10; i++){
  //get upcoming shows based on similar artists playing locally
  concerts[i] = response.recommendations[i].event.venue.name;
@@ -79,7 +78,6 @@ for (var i = 0; i < 10; i++){
  showDate[i]=response.recommendations[i].event.datetime_local;
  localArtist [i] = response.recommendations[i].event.title;			
  convertedDate[i] =moment(showDate[i]).format('  dddd MMM Do, YYYY hh:mm a');
- console.log("converted: " + convertedDate[i]);
  $("#near-you").append($("<h2>" + localArtist[i] + "  </h2><a href=" + link[i] + ">" + concerts[i]+ "</a>  "));
  $("#near-you").append(convertedDate[i] + "<br>");
  //get venue's coordinates and create markers to put on the map
@@ -90,58 +88,18 @@ for (var i = 0; i < 10; i++){
   var marker = new google.maps.Marker({
             position: latLng,
             map: map
-          });		
-}
-  });
-});
-//this call does not work
-//index.html:1 XMLHttpRequest cannot load https://maps.googleapis.com/maps/api/js?key=AIzaSyAuLlYRZMv5nnlPQqKpyua8XfZ_yk3O9eE&callback=initMap. 
-//No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.
-// var mapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuLlYRZMv5nnlPQqKpyua8XfZ_yk3O9eE&callback=initMap";
-// $.ajax({
-// url: mapURL,
-// method: "GET"}).done(function(response){
-//  //function call to take locations array and put it on the google map
-//  console.log(response);
-
- for (var i = 0; i < 10; i++) {
-console.log("test2");
-  var marker = new google.maps.Marker({
-    position: (lat[i], lon[i]),
-    map: map
-    });
+            });		
   }
-// });
-};
-//Khalid's ajax call to get events based on city and state (currently returns venues in your area)
-    $("#add-city").on("click", function(event) {
-        event.preventDefault();
-    var city     = $("#city-input").val().trim();
-    var state    = $("#state-input").val().trim();
-    var queryURL = "https://api.seatgeek.com/2/venues?city=" + city +  "&state="+ state +"&client_id=" +  "ODE3MjUzMnwxNTAwMjI5MjgxLjg5" + "&format=json"
-
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).done(function(response) {
-      console.log(response);
-      console.log(response.Runtime);
-    });
-
-
-     
-		});
-
-
-
+ });
+});
+}
 function artistResult(){
 	//store user search parameter
 	var artist;
 	artist = $("#user-input").val().trim();
 	var artistURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist + "&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
 
-$.ajax({
+  $.ajax({
 	url: artistURL,
 	method: "GET"}).done(function(response){
 		//store the artists weblink on last.fm 
@@ -158,7 +116,7 @@ $.ajax({
 		var newImage = $("<img>").attr("src", img);
 		console.log(newImage);
 		$("#artist-bio").prepend(newDiv2);
-		$("#artist-bio").prepend(newImage);
+		$("#artist1").attr("src", img);
 	
 	});
 }
@@ -166,7 +124,7 @@ function topArtists(){
 	
 	var topURL = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
 
-$.ajax({
+  $.ajax({
 	url: topURL,
 	method: "GET"}).done(function(response){
 
@@ -199,7 +157,7 @@ function findSimilar(){
 	console.log(response);
 		var topTen = [];
 		var topTenPic = [];
-		var simImg;
+		var simImg=[];
 		var link =[];
 		var picLink;
 
@@ -207,8 +165,10 @@ function findSimilar(){
 			topTen[i] = response.similarartists.artist[i].name;
 			topTenPic[i] = response.similarartists.artist[i].image[3]["#text"];
 			link [i] = response.similarartists.artist[i].url;
-			simImg = $("<img>").attr("src", topTenPic[i]).wrap($('<a>').attr("href",link[i]));
-			$("#simDiv").append($("<h2>").append(topTen[i]).append($("<br><divPic>").append(simImg)));
+			simImg = $("<img>").attr("src", topTenPic[i]);
+			$("#simDiv").append($("<a href=" + link[i] + "><h2>" + topTen[i] +"</h2><img src= '" + topTenPic[i] + "'</a>  "));
+
+			//$("#simDiv").append($("<h2>").append(topTen[i]).append($("<br><divPic>").append(simImg)));
 
 			}
 		});
@@ -221,10 +181,33 @@ $("#get-results").on("click",function(event){
 	eventFinder();
 	findSimilar();
 });
+//loads youTube video and lyrics
+$(document).on('click' , "#get-results" , function(event){
+ 
+  event.preventDefault();
+       
+	//generate youTube video
+	$("#concert").hide();
+	var baseUrl = 'http://www.youtube.com/embed?listType=search&list=';
+	var searchField = $("#user-input").val();
+	var targetUrl = baseUrl + searchField;
+	$("#yourIframe").attr("src", targetUrl);
+	//generat lyrics link
+	var baseUrl = 'http://search.azlyrics.com/search.php?q=';
+	var searchField = $("#user-input").val();
+	var targetUrl = baseUrl + searchField;
+	 
+	$("#lLink").attr("href", targetUrl);
+});
 //when user clicks button for top artists
 $("#top-artists").on("click",function(event){
 	event.preventDefault();
 	topArtists();
-});
+	});
+
+
+
+
 
 });
+

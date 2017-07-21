@@ -3,8 +3,8 @@ var map;
 function initMap() {
 	
   map = new google.maps.Map(document.getElementById('map'), {
-  zoom: 2,
-  center: new google.maps.LatLng(2.8,-187.3),
+  zoom: 8,
+  center: new google.maps.LatLng(35.22,-80.84),
   mapTypeId: 'terrain'
 		});
 }
@@ -82,9 +82,15 @@ for (var i = 0; i < 10; i++){
  console.log("converted: " + convertedDate[i]);
  $("#near-you").append($("<h2>" + localArtist[i] + "  </h2><a href=" + link[i] + ">" + concerts[i]+ "</a>  "));
  $("#near-you").append(convertedDate[i] + "<br>");
- //get venue's coordinates
+ //get venue's coordinates and create markers to put on the map
  lon[i] = response.recommendations[i].event.venue.location.lon;
- lat[i] = response.recommendations[i].event.venue.location.lat;			
+ lat[i] = response.recommendations[i].event.venue.location.lat;	
+ var coords = {lat: lat[i],lon: lon[i]}
+ var latLng = new google.maps.LatLng(coords.lat,coords.lon);
+  var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });		
 }
   });
 });
@@ -178,7 +184,6 @@ $.ajax({
 
 		
 	});
-	console.log("peace");
 }
 function findSimilar(){
 
@@ -195,13 +200,15 @@ function findSimilar(){
 		var topTen = [];
 		var topTenPic = [];
 		var simImg;
+		var link =[];
+		var picLink;
 
 		for (var i = 0; i < 10; i++){
 			topTen[i] = response.similarartists.artist[i].name;
 			topTenPic[i] = response.similarartists.artist[i].image[3]["#text"];
-			simImg = $("<img>").attr("src", topTenPic[i]);
-			$("#similar").prepend(topTen[i]);
-			$("#similar").prepend(simImg);
+			link [i] = response.similarartists.artist[i].url;
+			simImg = $("<img>").attr("src", topTenPic[i]).wrap($('<a>').attr("href",link[i]));
+			$("#simDiv").append($("<h2>").append(topTen[i]).append($("<br><divPic>").append(simImg)));
 
 			}
 		});
@@ -212,21 +219,11 @@ $("#get-results").on("click",function(event){
 	event.preventDefault();
 	artistResult();
 	eventFinder();
-});
-//when user clicks button for artists similar to name the put
-$("#similar-artists").on("click",function(event){
-	event.preventDefault();
 	findSimilar();
-});
-//when user adds their location
-$("#add-location").on("click",function(event){
-	event.preventDefault();
-	
 });
 //when user clicks button for top artists
 $("#top-artists").on("click",function(event){
 	event.preventDefault();
-	console.log("yo");
 	topArtists();
 });
 

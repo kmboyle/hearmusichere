@@ -54,7 +54,7 @@ for (var i = 0; i < 10; i++){
  showDate[i]=response.events[i].datetime_local;
  convertedDate[i] =moment(showDate[i]).format('  dddd MMM Do, YYYY hh:mm a');
  console.log("converted: " + convertedDate[i]);
- $("#tour-location").append($("<a href=" + link[i] + ">" + concerts[i]+ "</a>  "));
+ $("#tour-location").append($("<a target='_blank' href=" + link[i] + ">" + concerts[i]+ "</a>  "));
  $("#tour-location").append(convertedDate[i] + "<br>");
  }
 });
@@ -78,7 +78,7 @@ for (var i = 0; i < 10; i++){
  showDate[i]=response.recommendations[i].event.datetime_local;
  localArtist [i] = response.recommendations[i].event.title;			
  convertedDate[i] =moment(showDate[i]).format('  dddd MMM Do, YYYY hh:mm a');
- $("#near-you").append($("<h2>" + localArtist[i] + "  </h2><a href=" + link[i] + ">" + concerts[i]+ "</a>  "));
+ $("#near-you").append($("<h2>" + localArtist[i] + "  </h2><a target='_blank' href=" + link[i] + ">" + concerts[i]+ "</a>  "));
  $("#near-you").append(convertedDate[i] + "<br>");
  //get venue's coordinates and create markers to put on the map
  lon[i] = response.recommendations[i].event.venue.location.lon;
@@ -105,16 +105,14 @@ function artistResult(){
 		//store the artists weblink on last.fm 
 		var link = response.artist.url;
 		//save the link as an ahref element 
-		var newDiv = $("<a href=" + link + ">");
+		var newDiv = $("<a target='_blank' href=" + link + ">");
 		var bio = response.artist.bio.summary;
 		var newDiv2 = $("<p class = bio>" + bio);
 		 console.log(response);
 		 //save artist image
 		 var img = response.artist.image[3]["#text"];
-		 console.log(img);
 		//save image to an html img element
 		var newImage = $("<img>").attr("src", img);
-		console.log(newImage);
 		$("#artist-bio").prepend(newDiv2);
 		$("#artist1").attr("src", img);
 	
@@ -166,7 +164,7 @@ function findSimilar(){
 			topTenPic[i] = response.similarartists.artist[i].image[3]["#text"];
 			link [i] = response.similarartists.artist[i].url;
 			simImg = $("<img>").attr("src", topTenPic[i]);
-			$("#simDiv").append($("<a href=" + link[i] + "><h2>" + topTen[i] +"</h2><img src= '" + topTenPic[i] + "'</a>  "));
+			$("#simDiv").append($("<a target='_blank' href=" + link[i] + "><h2>" + topTen[i] +"</h2><img src= '" + topTenPic[i] + "'</a>  "));
 
 			//$("#simDiv").append($("<h2>").append(topTen[i]).append($("<br><divPic>").append(simImg)));
 
@@ -177,6 +175,11 @@ function findSimilar(){
 //when user clicks button for artist name
 $("#get-results").on("click",function(event){
 	event.preventDefault();
+	//clear contents after searching
+	$("#tour-location").empty();
+	$("#near-you").empty();
+	$("#artist-bio").empty();
+	$("#simDiv").empty();
 	artistResult();
 	eventFinder();
 	findSimilar();

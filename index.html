@@ -1,59 +1,64 @@
-<!DOCTYPE html> <!-- Begin Blue Belt Coding Ninja HTML -->
+<!DOCTYPE html>
+<!-- Begin Blue Belt Coding Ninja HTML -->
 
 <!-- What language do we speak? -->
 <html lang="en">
 
 <!-- Head Info Here -->
+
 <head>
-    
-<!-- Meta Info -->
-<meta charset="UTF-8">
-<meta name="description" content="Hear Music Here"><!-- Description of Web Page Info -->
-<meta name="keywords" content="Hear Music Here, Hear, Music, Here "><!-- Keywords of Web Page  Info -->
-<meta name="author" content="Kevin Gulledge, Kevin Boyle, Khalid Lipscomb, Lantz Weaver"> <!-- Group Effort -->
-<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This might be important -->
-    
-<!-- Who's page is this again? -->
-<title>Hear Music Here</title>
 
-<!-- CSS Reset -->
-<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    
-<!-- Bootstrap CSS Link -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Meta Info -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Hear Music Here">
+    <!-- Description of Web Page Info -->
+    <meta name="keywords" content="Hear Music Here, Hear, Music, Here ">
+    <!-- Keywords of Web Page  Info -->
+    <meta name="author" content="Kevin Gulledge, Kevin Boyle, Khalid Lipscomb, Lantz Weaver">
+    <!-- Group Effort -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- This might be important -->
 
-<!-- Bootstrap Theme CSS Link (there are some errors that pop up due to this file) -->
-<link rel="stylesheet" type="text/css" href="assets/css/theme.css">
+    <!-- Who's page is this again? -->
+    <title>Hear Music Here</title>
 
-<!-- Personalized CSS Link 
+    <!-- CSS Reset -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+    <!-- Bootstrap CSS Link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Bootstrap Theme CSS Link (there are some errors that pop up due to this file) -->
+    <link rel="stylesheet" type="text/css" href="assets/css/theme.css">
+
+    <!-- Personalized CSS Link 
 <link rel="stylesheet" type="text/css" href="assets/css/style.css" -->
 
-<!-- Google Font Link -->
-<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- Google Font Link -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-<!-- SASS CSS Link -->
-<link rel="stylesheet" type="text/css" href="assets/css/testm.scss">
+    <!-- SASS CSS Link -->
+    <link rel="stylesheet" type="text/css" href="assets/css/testm.scss">
 
-<!-- Sass Style Sheet -->
-<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-<link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  [if IE]>
-      <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
-  [endif]
+    <!-- Sass Style Sheet -->
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" /> [if IE]>
+    <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" /> [endif]
 
 </head>
 
 <!-- Body of Page Here -->
+
 <body>
 
-<!-- Where are you going? Choose your own adventure on this navigation bar, you are...the navigator...-->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      
-<div class="container">
-      
-<div class="navbar-header">
+    <!-- Where are you going? Choose your own adventure on this navigation bar, you are...the navigator...-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
 
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <div class="container">
+
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
       
 <span class="sr-only">Toggle navigation</span>
       
@@ -64,283 +69,424 @@
 <span class="icon-bar"></span>
       
 </button>
-      
-<a class="navbar-brand" href="#">Hear Music Here</a>
-      
-</div>
 
-<form class="navbar-form navbar-left">
-        
-<div class="form-group">
+                <a class="navbar-brand" href="#">Hear Music Here</a>
 
-<input type="text" class="form-control" placeholder="Artist, Genre, Song">
-
-</div>
-
-<button type="submit" class="btn btn-default">Submit</button>
-
-</form>
-      
-<div id="navbar" class="collapse navbar-collapse">
-      
-<ul class="nav navbar-nav">
-      
-<li class="active"><a href="index.html">Home</a></li>
-
- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
             </div>
 
- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown02">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+            <form class="navbar-form navbar-left">
+
+                <div class="form-group">
+
+                    <input type="text" id="user-input" class="form-control" placeholder="Artist, Genre, Song">
+
+                </div>
+
+                <button type="submit" id="get-results" class="btn btn-default">Submit</button>
+
+            </form>
+
+            <p id="validate"></p>
+
+            <div id="navbar" class="collapse navbar-collapse">
+
+                <ul class="nav navbar-nav">
+
+                    <li class="active"><a href="index.html">Home</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+
+                </ul>
+
             </div>
-      
-</ul>
-      
-</div><!-- Nav Collapse -->
-      
-</div>
-    
-</nav>
-
-<!-- Begin Carousel -->
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    
-<!-- Indicate this awesome carousel -->
-<!-- Dynamically add carousel items  -->
-<ol class="carousel-indicators">
-<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-<li data-target="#myCarousel" data-slide-to="1"></li>
-<li data-target="#myCarousel" data-slide-to="2"></li>
-</ol>
-    
-<div class="carousel-inner" role="listbox">
-      
-<div class="item active">
-        
-<div class="container">
-          
-<div class="carousel-caption">
-  <!-- adding pictures user searches for           -->
-<a href="" target="_blank">
-<img src="" alt="" height="200" width="200"></a>
-            
-<h1><i class="" aria-hidden="true"></i></span></h1>
-          
-</div>
-        
-</div>
-      
-</div>
-      
-<div class="item">
-
-<div class="container">
-          
-<div class="carousel-caption">
-            
-<a href="" target="_blank">
-<img src="" alt="" height="200" width="300"></a>
-
-</div>
-        
-</div>
-      
-</div>
-
-<div class="item">
-        
-<div class="container">
-          
-<div class="carousel-caption">
-            
-<a href="" target="_blank">
-          
-<img src="assets/css/fillmore.jpg" alt="" height="200" width="300"></a>
-          
-</div>
-        
-</div>
-      
-</div>
-      
-</div>
+            <!-- Nav Collapse -->
 
-<a class="left carousel-control" href="" role="button" data-slide="prev">
-      
-<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-<span class="sr-only">Previous</span>
-    
-</a>
-    
-<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      
-<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-<span class="sr-only">Next</span>
-    
-</a>
-   
-</div><!-- End Carousel -->
+        </div>
 
-<!-- Begin Container -->
-<div class="container">
+    </nav>
 
-<div class="row row-offcanvas row-offcanvas-right">
+    <!-- Begin Carousel -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
 
-<div class="col-12 col-md-9">
+        <!-- Indicate this awesome carousel -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
 
-<!-- Begin Jumbotron 5000 -->
-<div class="jumbotron" >
-<!-- artist bio and picture -->
-<div id = "artist-bio"></div>
-<!-- youtube iframe -->
-<center><iframe id="yourIframe" width="560" height="315" src="https://www.youtube.com/embed/8SeRU_ZPDkE" frameborder="0" allowfullscreen></iframe></center>
-</div>
+        <div class="carousel-inner" role="listbox">
 
-<div class="row">
+            <div class="item active">
 
-<div class="col-6 col-lg-8">
+                <div class="container">
 
+                    <div class="carousel-caption">
 
-<div id="tour-location"></div>
-<h2>Video Here</h2>
+                        <a href="" target="_blank">
+                            <img id="artist1" src="assets/css/Fillmore.jpg" alt="" height="200" width="300"></a>
 
+                        <h1><i class="" aria-hidden="true"></i></span>
+                        </h1>
 
+                    </div>
 
-<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                </div>
 
-<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </div>
 
+            <div class="item">
 
-</div><!--/span-->
+                <div class="container">
 
-<div class="col-6 col-lg-4">
+                    <div class="carousel-caption">
 
-<div id="lyrics">
-<a id="lLink" href="" target="_blank">Look At The Lyrics!</a>
-<div>
+                        <a href="" target="_blank">
+                            <img id="artist2" src="assets/css/PNC.jpg" alt="" height="200" width="300"></a>
 
+                    </div>
 
-<h2>Bio Here</h2>
+                </div>
 
-<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            </div>
 
-<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </ul>
 
-<div id="map" style="width:315px; height:315px">My map will go here</div>
+        </div>
+        <!-- Nav Collapse -->
 
-</div><!--/span-->
+    </div>
 
-<div class="col-6 col-lg-8">
+    </nav>
 
-<h2>Similar Artist</h2>
+    <!-- Begin Carousel -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
 
-<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <!-- Indicate this awesome carousel -->
+        <!-- Dynamically add carousel items  -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
 
-<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        <div class="carousel-inner" role="listbox">
 
-</div><!--/span-->
+            <div class="item active">
 
-<div class="col-6 col-lg-4">
-  <div id="map"></div>
+                <div class="container">
 
-<h2>S.A. Info</h2>
+                    <div class="carousel-caption">
+                        <!-- adding pictures user searches for           -->
+                        <a href="" target="_blank">
+                            <img src="" alt="" height="200" width="200"></a>
 
-<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <h1><i class="" aria-hidden="true"></i></span>
+                        </h1>
 
-<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                    </div>
 
-</div><!--/span-->
+                </div>
 
-<div class="col-6 col-lg-8">
+            </div>
 
-<h2>Similar Artist</h2>
+            <div class="item">
 
-<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                <div class="container">
 
-<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                    <div class="carousel-caption">
 
-</div><!--/span-->
+                        <a href="" target="_blank">
+                            <img src="" alt="" height="200" width="300"></a>
 
-<div class="col-6 col-lg-4">
+                    </div>
 
-<h2>S.A Info</h2>
+                </div>
 
-<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            </div>
 
-<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <div class="item">
 
-</div><!--/span-->
+                <div class="container">
 
-</div><!--/row-->
+                    <div class="carousel-caption">
 
-</div><!--/span-->
+                        <a href="" target="_blank">
 
-<div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+                            <img src="assets/css/fillmore.jpg" alt="" height="200" width="300"></a>
 
-<div class="col-6 col-lg-8">
+                    </div>
 
-<h2>Play List</h2>
+                </div>
 
-<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            </div>
 
-<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
 
-</div><!--span-->
+        <a class="left carousel-control" href="" role="button" data-slide="prev">
 
-<div class="col-6 col-lg-4">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
 
-</div><!--span-->
+        </a>
 
-</div><!--row-->
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
 
-<hr>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
 
-</div><!--.container-->
+        </a>
 
-</div>
+    </div>
+    <!-- End Carousel -->
 
-<!-- Begin Footer -->
-<footer class="footer">
+    <div class="item">
 
-<div class="container">
+        <div class="container">
 
-<button><a href="http://www.uber.com/ride" target="_blank">UBER</button>
+            <div class="carousel-caption">
 
-<p class="text-muted">&copy; Copyright 2017 HMH</p>
+                <a href="" target="_blank">
 
-</div>
+                    <img src="assets/css/visulite.jpg" alt="" height="200" width="300"></a>
 
-</footer>
+            </div>
 
-<!-- jQuery CDN -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        </div>
 
-<!-- Bootstrap JavaScript CDN -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </div>
 
-<!-- Google Maps API -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuLlYRZMv5nnlPQqKpyua8XfZ_yk3O9eE&callback=initMap"></script>
+    </div>
 
-<!-- Google Analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 
-  ga('create', 'UA-103035079-1', 'auto');
-  ga('send', 'pageview');
+        <!-- Begin Jumbotron 5000 -->
+        <div class="jumbotron">
+            <!-- artist bio and picture -->
+            <div id="artist-bio"></div>
+            <!-- youtube iframe -->
+            <center><iframe id="yourIframe" width="560" height="315" src="https://www.youtube.com/embed/8SeRU_ZPDkE" frameborder="0" allowfullscreen></iframe></center>
+        </div>
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
 
-</script>
+    </a>
+
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+
+        <<<<<<< HEAD <div id="tour-location">
+            </div>
+            <h2>Video Here</h2>
+
+
+
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+
+            =======
+    </a>
+    >>>>>>> kevinB
+
+    </div>
+    <!-- End Carousel -->
+
+    <!-- Begin Container -->
+    <div class="container">
+
+        <div id="lyrics">
+            <a id="lLink" href="" target="_blank">Look At The Lyrics!</a>
+            <div>
+
+
+                <h2>Bio Here</h2>
+
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+
+                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+
+                <div id="map" style="width:315px; height:315px">My map will go here</div>
+
+            </div>
+            <!--/span-->
+
+            <div class="col-12 col-md-9">
+
+                <!-- Begin Jumbotron 5000 -->
+                <div class="jumbotron">
+                    <img id="concert" width="100%" height="100%" src="assets/css/concert.jpg">
+                    <!-- holds youtube video -->
+                    <center><iframe id="yourIframe" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+                        <!-- holds lyrics link -->
+                        <div id="lyrics">
+                            <a id="lLink" href="" target="_blank">Look At The Lyrics!</a>
+                            <div>
+                                <div id="artist-bio"></div>
+                    </center>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-6 col-lg-8">
+
+                            <h2>Similar Artists Playing Here</h2>
+                            <div id="near-you"></div>
+                        </div>
+                        <!--/span-->
+
+                        <div class="col-6 col-lg-4">
+                            <div id="map"></div>
+
+                            <div id="map" style="width:100%; height:315px">My map will go here</div>
+
+                        </div>
+                        <!--/span-->
+
+                        <div class="col-6 col-lg-8">
+
+                            <h2>Similar Artists</h2>
+                            <div id="similar"></div>
+                            <!-- <a href="" target="_blank" id="simArt-link"> -->
+                            <div id="simDiv"></div>
+                            </a>
+                            <!-- <h3 id="simName"></h3>-->
+
+
+                            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+
+                        </div>
+                        <!--/span-->
+
+                        <div class="col-6 col-lg-4">
+
+                            <h2>S.A. Info</h2>
+
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio
+                                dui. </p>
+
+                            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+
+                        </div>
+                        <!--/span-->
+
+                        <div class="col-6 col-lg-8">
+
+                            <h2>Similar Artist</h2>
+
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio
+                                dui. </p>
+
+                            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+
+                        </div>
+                        <!--/span-->
+
+                        <div class="col-6 col-lg-4">
+
+                            <h2>S.A Info</h2>
+
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio
+                                dui. </p>
+
+                            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+
+                        </div>
+                        <!--/span-->
+
+                    </div>
+                    <!--/row-->
+
+                    </div>
+                    <!--/span-->
+
+                    <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+
+                        <div class="col-6 col-lg-8">
+
+                            <h2>Upcoming Shows:</h2>
+
+                            <div id="tour-location"></div>
+
+                            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+
+                        </div>
+                        <!--span-->
+
+                        <div class="col-6 col-lg-4">
+
+                        </div>
+                        <!--span-->
+
+                    </div>
+                    <!--row-->
+
+                    <hr>
+
+                </div>
+                <!--.container-->
+
+            </div>
+
+            <!-- Begin Footer -->
+            <footer class="footer">
+
+                <div class="container">
+
+                    <button><a href="http://www.uber.com/ride" target="_blank">UBER</button>
+
+                    <p class="text-muted">&copy; Copyright 2017 HMH</p>
+
+                </div>
+
+            </footer>
+
+            <!-- jQuery CDN -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+            <!-- Bootstrap JavaScript CDN -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <!-- javascript file -->
+            <script src='assets/javascript/game.js'></script>
+
+            <!-- Google Maps API -->
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuLlYRZMv5nnlPQqKpyua8XfZ_yk3O9eE&callback=initMap"></script>
+
+            <!-- Google Analytics -->
+            <script>
+                (function(i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function() {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-103035079-1', 'auto');
+                ga('send', 'pageview');
+            </script>
 
 </body>
 
@@ -351,12 +497,12 @@
 <!-- Begin Footer -->
 <footer class="footer">
 
-<div class="container">
+    <div class="container">
 
 
-<p class="text-muted">&copy; Copyright 2017 HMH</p>
+        <p class="text-muted">&copy; Copyright 2017 HMH</p>
 
-</div>
+    </div>
 
 </footer>
 
@@ -370,13 +516,13 @@
 <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
 <!-- Our very own javascript file -->
-<script src= "assets/javascript/game.js"></script>
+<script src="assets/javascript/game.js"></script>
 
 <!-- Bootstrap JavaScript CDN -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Google MAP API -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuLlYRZMv5nnlPQqKpyua8XfZ_yk3O9eE&callback=initMap"></script> 
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuLlYRZMv5nnlPQqKpyua8XfZ_yk3O9eE&callback=initMap"></script>
 
 </body>
 

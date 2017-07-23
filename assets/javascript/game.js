@@ -126,15 +126,16 @@ $(document).ready(function() {
 
             var i = 0;
 
-            $('.item').first().removeClass('active');
-            $('.carousel-indicators > li').first().removeClass('active');
+            $('.item').removeClass('active');
+            $('.carousel-indicators > li').removeClass('active');
 
 
             $('<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>').appendTo('.carousel-indicators');
 
             $(".carousel-inner").prepend($('<div class="item"><div class="container">' +
-                '<div class="carousel-caption"><a href="" target="_blank">' +
-                artistPic.prop('outerHTML') + '</a></div></div></div>'));
+                '<div class="carousel-caption"><a href="' + link + '" target="_blank">' +
+                artistPic.prop('outerHTML') + '<h1><i class="" aria-hidden="true">' + artist + '</i>' +
+                '</h1></a></div></div></div>'));
 
             i++;
 
@@ -216,10 +217,12 @@ $(document).ready(function() {
             $("#near-you").empty();
             $("#artist-bio").empty();
             $("#simDiv").empty();
+            $("#top-ten").empty();
             artistResult();
             eventFinder();
             findSimilar();
             topArtists();
+
         }
     });
     //loads youTube video and lyrics
@@ -241,6 +244,7 @@ $(document).ready(function() {
             var targetUrl = baseUrl + searchField;
 
             $("#lLink").attr("href", targetUrl);
+            $("#user-input").val("");
         }
     });
 

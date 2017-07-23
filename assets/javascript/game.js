@@ -207,33 +207,41 @@ $(document).ready(function() {
     //when user clicks button for artist name
     $("#get-results").on("click", function(event) {
         event.preventDefault();
-        //clear contents after searching
-        $("#tour-location").empty();
-        $("#near-you").empty();
-        $("#artist-bio").empty();
-        $("#simDiv").empty();
-        artistResult();
-        eventFinder();
-        findSimilar();
-        topArtists();
+        if ($("#user-input").val() === "") {
+            $("#validate").html("Hey! You didn't enter anything!");
+        } else {
+            $("#validate").html("");
+            //clear contents after searching
+            $("#tour-location").empty();
+            $("#near-you").empty();
+            $("#artist-bio").empty();
+            $("#simDiv").empty();
+            artistResult();
+            eventFinder();
+            findSimilar();
+            topArtists();
+        }
     });
     //loads youTube video and lyrics
     $(document).on('click', "#get-results", function(event) {
 
         event.preventDefault();
+        if ($("#user-input").val() === "") {
+            console.log("working");
+        } else {
+            //generate youTube video
+            $("#concert").hide();
+            var baseUrl = 'http://www.youtube.com/embed?listType=search&list=';
+            var searchField = $("#user-input").val();
+            var targetUrl = baseUrl + searchField + "&autoplay=1";
+            $("#yourIframe").attr("src", targetUrl);
+            //generat lyrics link
+            var baseUrl = 'http://search.azlyrics.com/search.php?q=';
+            var searchField = $("#user-input").val();
+            var targetUrl = baseUrl + searchField;
 
-        //generate youTube video
-        $("#concert").hide();
-        var baseUrl = 'http://www.youtube.com/embed?listType=search&list=';
-        var searchField = $("#user-input").val();
-        var targetUrl = baseUrl + searchField + "&autoplay=1";
-        $("#yourIframe").attr("src", targetUrl);
-        //generat lyrics link
-        var baseUrl = 'http://search.azlyrics.com/search.php?q=';
-        var searchField = $("#user-input").val();
-        var targetUrl = baseUrl + searchField;
-
-        $("#lLink").attr("href", targetUrl);
+            $("#lLink").attr("href", targetUrl);
+        }
     });
 
 });

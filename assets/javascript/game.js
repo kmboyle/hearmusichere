@@ -227,7 +227,7 @@ $(document).ready(function() {
 
         event.preventDefault();
         if ($("#user-input").val() === "") {
-            console.log("working");
+
         } else {
             //generate youTube video
             $("#concert").hide();

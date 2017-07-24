@@ -1,3 +1,19 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyB6p3dOXyEWZDIwMSUOTEej-6cSaPlE8LI",
+    authDomain: "awesomeness-a47d9.firebaseapp.com",
+    databaseURL: "https://awesomeness-a47d9.firebaseio.com",
+    projectId: "awesomeness-a47d9",
+    storageBucket: "awesomeness-a47d9.appspot.com",
+    messagingSenderId: "154832084236"
+};
+
+firebase.initializeApp(config);
+
+//create a local database
+var database = firebase.database();
+
+
 //global map variable so unique markers can be assigned to it within the AJAX call
 var map;
 //This function creates the dap to display in HTML and loads based on Charlotte as its center
@@ -119,27 +135,39 @@ $(document).ready(function() {
             console.log(response);
             //save artist image
             var img = response.artist.image[4]["#text"];
-            //save image to an html img element
+            //save image and data to firebase
+            var savedImg = response.artist.image[2]["#text"];
 
-            var artistPic = $("<img>");
-            artistPic.attr("src", img);
-            artistPic.attr("alt", "" + artist);
 
+            var artistData = {
+                    name: artist,
+                    website: link,
+                    info: bio,
+                    picture: savedImg
+                }
+                //push new artist entry to database
+            database.ref().push(artistData);
+
+
+            //adding photo of artist to the carousel
             var i = 0;
-
+            var artistPic = $("<img>");
+            artistPic.attr("alt", "" + artist);
+            artistPic.attr("src", img);
+            //remove the item and indicator that have the current active class
             $('.item').removeClass('active');
             $('.carousel-indicators > li').removeClass('active');
 
-
+            //add indicator to item
             $('<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>').appendTo('.carousel-indicators');
-
+            //add photo to carousel and create a link to artists site
             $(".carousel-inner").prepend($('<div class="item"><a href="' + link + '" target="_blank">' +
                 '<center><img src="' + img + '"alt="" style="height: 450px; width: 600px"><div class="carousel-caption"><h1><i class="" aria-hidden="true"></i>' +
                 '</h1></div></center></a>'));
-
+            //increment "data-slide-to" property to continuously add slides
             i++;
 
-
+            //make the new added item the active class
             $('.item').first().addClass('active');
             $('.carousel-indicators > li').first().addClass('active');
             $('#carousel-example-generic').carousel();
@@ -258,6 +286,24 @@ $(document).ready(function() {
             $("#lLink").attr("href", targetUrl);
             $("#user-input").val("");
         }
+    });
+
+    //update "your searches" by retrieving data from firebase and adding it to HTML
+    database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+
+        var userArtist = childSnapshot.val().name;
+        var lastFM = childSnapshot.val().website;
+        var background = childSnapshot.val().info;
+        var photo = childSnapshot.val().picture;
+
+        var searchItem = $("<div class= col-md-4>");
+        var item = $('<a target="_blank" href=' + lastFM + "><h2>" + userArtist + "</h2><img class=img-responsive style='border: 5px solid #0ce3ac'" +
+            "src= '" + photo + "'</a>" +
+            '<p>' + background + '</p></div></div>');
+        searchItem.append(item);
+        $(".user-search").prepend(searchItem);
+
+
     });
 
 });

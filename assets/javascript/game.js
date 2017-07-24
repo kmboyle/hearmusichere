@@ -1,6 +1,6 @@
-//map needs to load before jquery document.ready
+//global map variable so unique markers can be assigned to it within the AJAX call
 var map;
-
+//This function creates the dap to display in HTML and loads based on Charlotte as its center
 function initMap() {
     var charlotte = { lat: 35.2248, lng: -80.8403 };
     map = new google.maps.Map(document.getElementById('map'), {
@@ -11,7 +11,10 @@ function initMap() {
 }
 
 $(document).ready(function() {
-
+    //this function returns the artists upcoming  10 tour dates lists them in HTML with a link to 
+    //purchase tickets from seatgeek.com.  Inside the AJAX call, there is a 2nd AJAX call to get the
+    //artists unique 'ID' and use that in a 3rd AJAX call to get similar artist shows around Charlotte.
+    //This last AJAX call also saves the coordinates and assigns a unique marker to the event on the map.
     function eventFinder() {
         //seatgeek.com
         //Your app secret is "46c31bd5bf11fe8eaa278a35e076ade5cdb8137dbf40eade638b75b55f7612f8" 
@@ -95,7 +98,8 @@ $(document).ready(function() {
             });
         });
     }
-
+    //this function returns the artist from the last.fm API and displays their image in the carousel, a link to their 
+    //website on last.fm and their bio in the jumbotron
     function artistResult() {
         //store user search parameter
         var artist;
@@ -118,10 +122,7 @@ $(document).ready(function() {
             //save image to an html img element
 
             var artistPic = $("<img>");
-
             artistPic.attr("src", img);
-            //artistPic.attr("height", 200);
-            // artistPic.attr("width", 300);
             artistPic.attr("alt", "" + artist);
 
             var i = 0;
@@ -148,7 +149,8 @@ $(document).ready(function() {
             //$("#artist1").attr("src", img);
         });
     }
-
+    //This function returns the top 10 artists from the last.fm API and displays their image, name, and a link
+    //to their website on last.fm
     function topArtists() {
 
         var topURL = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
@@ -178,7 +180,8 @@ $(document).ready(function() {
 
         });
     }
-
+    //This function finds 10 similar artists from the last.fm API and diplays their image, name, and adds
+    //a link to their website on last.fm
     function findSimilar() {
 
         //store user search parameter
@@ -196,6 +199,8 @@ $(document).ready(function() {
             var topTenPic = [];
             var simImg = [];
             var link = [];
+            var imgHolder;
+            var img;
 
 
             for (var i = 0; i < 10; i++) {
@@ -203,8 +208,8 @@ $(document).ready(function() {
                 topTenPic[i] = response.similarartists.artist[i].image[3]["#text"];
                 link[i] = response.similarartists.artist[i].url;
                 //displays the similar artists images
-                var imgHolder = $("<div class= 'col-md-4'>");
-                var img = $('<a target="_blank" href=' + link[i] + "><h2>" + topTen[i] + "</h2><img class=img-responsive' style='border: 5px solid #0ce3ac' src= '" + topTenPic[i] + "'</a></div></div>'");
+                imgHolder = $("<div class= 'col-md-4'>");
+                img = $('<a target="_blank" href=' + link[i] + "><h2>" + topTen[i] + "</h2><img class=img-responsive' style='border: 5px solid #0ce3ac' src= '" + topTenPic[i] + "'</a></div></div>'");
                 imgHolder.append(img);
                 $(".pic-container").append(imgHolder);
 
@@ -223,8 +228,8 @@ $(document).ready(function() {
             $("#tour-location").empty();
             $("#near-you").empty();
             $("#artist-bio").empty();
-            $("#simDiv").empty();
-            $("#top-ten").empty();
+            $(".pic-container").empty();
+            $(".top-ten").empty();
             artistResult();
             eventFinder();
             findSimilar();

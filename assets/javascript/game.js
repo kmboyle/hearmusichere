@@ -114,15 +114,15 @@ $(document).ready(function() {
             var newDiv2 = $("<p class = bio>" + bio);
             console.log(response);
             //save artist image
-            var img = response.artist.image[3]["#text"];
+            var img = response.artist.image[4]["#text"];
             //save image to an html img element
 
             var artistPic = $("<img>");
 
             artistPic.attr("src", img);
-            artistPic.attr("height", 200);
-            artistPic.attr("width", 300);
-            artistPic.attr("alt", "");
+            //artistPic.attr("height", 200);
+            // artistPic.attr("width", 300);
+            artistPic.attr("alt", "" + artist);
 
             var i = 0;
 
@@ -132,10 +132,9 @@ $(document).ready(function() {
 
             $('<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>').appendTo('.carousel-indicators');
 
-            $(".carousel-inner").prepend($('<div class="item"><div class="container">' +
-                '<div class="carousel-caption"><a href="' + link + '" target="_blank">' +
-                artistPic.prop('outerHTML') + '<h1><i class="" aria-hidden="true">' + artist + '</i>' +
-                '</h1></a></div></div></div>'));
+            $(".carousel-inner").prepend($('<div class="item"><a href="' + link + '" target="_blank">' +
+                '<center><img src="' + img + '"alt="" style="height: 450px; width: 600px"><div class="carousel-caption"><h1><i class="" aria-hidden="true"></i>' +
+                '</h1></div></center></a>'));
 
             i++;
 
@@ -167,7 +166,12 @@ $(document).ready(function() {
                 top[i] = response.artists.artist[i].name;
                 topPic[i] = response.artists.artist[i].image[3]["#text"];
                 url[i] = response.artists.artist[i].url;
-                $("#top-ten").append($("<a target='_blank' href=" + url[i] + "><h2>" + top[i] + "</h2><img src= '" + topPic[i] + "'</a>  "));
+                //display top artist images
+                var imgHolder = $("<div class= 'col-md-4'>");
+                var img = $('<a target="_blank" href=' + url[i] + "><h2>" + top[i] + "</h2><img class=img-responsive' style='border: 5px solid #0ce3ac' src= '" + topPic[i] + "'</a></div></div>'");
+                imgHolder.append(img);
+                $(".top-ten").append(imgHolder);
+
 
             }
 
@@ -198,8 +202,11 @@ $(document).ready(function() {
                 topTen[i] = response.similarartists.artist[i].name;
                 topTenPic[i] = response.similarartists.artist[i].image[3]["#text"];
                 link[i] = response.similarartists.artist[i].url;
-                // simImg = $("<img>").attr("src", topTenPic[i]);
-                $("#simDiv").append($("<a target='_blank' href=" + link[i] + "><h2>" + topTen[i] + "</h2><img src= '" + topTenPic[i] + "'</a>  "));
+                //displays the similar artists images
+                var imgHolder = $("<div class= 'col-md-4'>");
+                var img = $('<a target="_blank" href=' + link[i] + "><h2>" + topTen[i] + "</h2><img class=img-responsive' style='border: 5px solid #0ce3ac' src= '" + topTenPic[i] + "'</a></div></div>'");
+                imgHolder.append(img);
+                $(".pic-container").append(imgHolder);
 
             }
         });

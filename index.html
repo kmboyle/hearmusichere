@@ -51,24 +51,13 @@
 
 <body>
 
-    <!-- Where are you going? Choose your own adventure on this navigation bar, you are...the navigator...-->
+    <!-- Where are you going? Choose your own adventure on this navigation bar, you are...the navigator... -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
 
         <div class="container">
 
             <div class="navbar-header">
 
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-      
-<span class="sr-only">Toggle navigation</span>
-      
-<span class="icon-bar"></span>
-      
-<span class="icon-bar"></span>
-      
-<span class="icon-bar"></span>
-      
-</button>
 
                 <a class="navbar-brand" href="index.html">Hear Music Here</a>
 
@@ -89,11 +78,11 @@
             <div id="validate"></div>
             <!-- Nav Collapse -->
         </div>
-        </div>
+
     </nav>
 
     <!-- Begin Carousel -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
 
         <!-- Indicate this awesome carousel -->
         <ol class="carousel-indicators">
@@ -102,80 +91,66 @@
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
 
-        <div class="carousel-inner" role="listbox">
+        <div class="carousel-inner">
 
             <div class="item active">
 
-                <div class="container">
-
-                    <div class="carousel-caption">
-
-                        <a href="http://www.fillmorecharlottenc.com/" target="_blank">
-                            <img id="artist1" src="assets/css/Fillmore.jpg" alt="" height="200" width="300">
-
-                            <h1><i class="" aria-hidden="true">The Fillmore</i>
+                <a href="http://www.fillmorecharlottenc.com/" target="_blank">
+                    <center><img id="artist1" src="assets/css/Fillmore.jpg" alt="The Fillmore" style="height: 450px; width: 600px">
+                        <div class="carousel-caption">
+                            <h1><i class="The Fillmore" aria-hidden="true"></i>
                             </h1>
-                        </a>
-
-                    </div>
-
-                </div>
+                        </div>
+                    </center>
+                </a>
 
             </div>
 
             <div class="item">
 
-                <div class="container">
-
-                    <div class="carousel-caption">
-
-                        <a href="http://www.pncmusicpav.com/" target="_blank">
-                            <img id="artist2" src="assets/css/PNC.jpg" alt="" height="200" width="300">
-                            <h1><i class="" aria-hidden="true">PNC Music Pavilion</i>
+                <a href="http://www.pncmusicpav.com/" target="_blank">
+                    <center><img id="artist2" src="assets/css/pnc2.jpg" alt="PNC Music Pavilion" style="height: 450px; width: 600px">
+                        <div class="carousel-caption">
+                            <h1><i class="PNC Music Pavilion" aria-hidden="true"></i>
                             </h1>
-                        </a>
-
-                    </div>
-
-                </div>
+                        </div>
+                    </center>
+                </a>
 
             </div>
+
 
             <div class="item">
 
-                <div class="container">
 
-                    <div class="carousel-caption">
+                <a href="http://www.visulite.com/" target="_blank">
 
-                        <a href="http://www.visulite.com/" target="_blank">
-
-                            <img src="assets/css/visulite.jpg" alt="" height="200" width="300">
-                            <h1><i class="" aria-hidden="true">Visulite</i>
+                    <center><img src="assets/css/visulite.jpg" alt="Visulite" style="height: 450px; width: 600px">
+                        <div class="carousel-caption">
+                            <h1><i class="Visulite" aria-hidden="true"></i>
                             </h1>
-                        </a>
-
-                    </div>
-
-                </div>
+                        </div>
+                    </center>
+                </a>
 
             </div>
 
-
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-
-
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-
-            </a>
-
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-
-            </a>
         </div>
+
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+
+
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+
+        </a>
+
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+
+        </a>
     </div>
     <!-- End Carousel -->
 
@@ -213,12 +188,21 @@
                     </center>
                 </div>
 
+                <div class="col-6 col-lg-12">
 
-                <div class="col-6 col-lg-6">
+                    <h2><strong>Similar Artists</strong></h2>
+                    <div class="pic-container">
 
-                    <h2>Top Artists</h2>
+                    </div>
+                </div>
+                <!--span-->
 
-                    <div id="top-ten"></div>
+
+                <div class="col-6 col-lg-12">
+
+                    <h2><strong>Top Artists</strong></h2>
+
+                    <div class="top-ten"></div>
 
 
                 </div>
@@ -239,12 +223,7 @@
 
 
             </div>
-            <div class="col-6 col-lg-8">
 
-                <h2>Similar Artists</h2>
-                <div id="simDiv"></div>
-            </div>
-            <!--span-->
 
 
             <!--span-->

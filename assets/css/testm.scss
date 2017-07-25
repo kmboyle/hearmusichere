@@ -3,7 +3,27 @@
 /* Nav 
 -------------------------------------------------- */
 .nav {
-float: right;
+align: center;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 100px;
+}
+
+.footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 95px;
+      background-color: black;
+      text-align: center;
 }
 
 /* Media Query styles
@@ -31,7 +51,7 @@ $break-large: 1024px;
 
 .carousel {
   height: 300px;
-  margin-top: 160px;
+  margin-top: 400px;
   margin-bottom: 30px;
 
 

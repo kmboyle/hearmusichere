@@ -120,7 +120,7 @@ $(document).ready(function() {
         //store user search parameter
         var artist;
         artist = $("#user-input").val().trim();
-        var artistURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist + "&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
+        var artistURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist + "&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
 
         $.ajax({
             url: artistURL,
@@ -181,7 +181,7 @@ $(document).ready(function() {
     //to their website on last.fm
     function topArtists() {
 
-        var topURL = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
+        var topURL = "https://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
 
         $.ajax({
             url: topURL,
@@ -215,7 +215,7 @@ $(document).ready(function() {
         //store user search parameter
         var artist;
         artist = $("#user-input").val().trim();
-        var similarURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" + artist + "&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
+        var similarURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" + artist + "&api_key=5261f823d2a8853b4a32607ae232d586&format=json";
 
 
         $.ajax({
@@ -274,12 +274,12 @@ $(document).ready(function() {
         } else {
             //generate youTube video
             $("#concert").hide();
-            var baseUrl = 'http://www.youtube.com/embed?listType=search&list=';
+            var baseUrl = 'https://www.youtube.com/embed?listType=search&list=';
             var searchField = $("#user-input").val();
             var targetUrl = baseUrl + searchField + "&autoplay=1";
             $("#yourIframe").attr("src", targetUrl);
             //generat lyrics link
-            var baseUrl = 'http://search.azlyrics.com/search.php?q=';
+            var baseUrl = 'https://search.azlyrics.com/search.php?q=';
             var searchField = $("#user-input").val();
             var targetUrl = baseUrl + searchField;
 

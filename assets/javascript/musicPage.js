@@ -79,7 +79,7 @@ $(document).ready(function() {
             method: "GET"
         }).done(function(response) {
             artistID = parseInt(response.performers[0].id);
-            console.log(artistID);
+            // console.log(artistID);
             //API call for FIND SIMILAR ARTISTS IN YOUR AREA SHOWS
             var localURL = "https://api.seatgeek.com/2/recommendations?performers.id=" + artistID + "&geoip=true&client_id=ODE3MjUzMnwxNTAwMjI5MjgxLjg5";
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
                 url: localURL,
                 method: "GET"
             }).done(function(response) {
-                console.log(response);
+                // console.log(response);
                 for (var i = 0; i < 10; i++) {
                     //get upcoming shows based on similar artists playing locally
                     concerts[i] = response.recommendations[i].event.venue.name;
@@ -129,7 +129,7 @@ $(document).ready(function() {
             var newDiv = $("<a target='_blank' href=" + link + ">");
             var bio = response.artist.bio.summary;
             var newDiv2 = $("<p class = bio>" + bio);
-            console.log(response);
+            // console.log(response);
             //save artist image
             var img = response.artist.image[4]["#text"];
             //save image and data to firebase
@@ -187,7 +187,7 @@ $(document).ready(function() {
             var url = [];
             var top = [];
             var topPic = [];
-            console.log(response);
+            // console.log(response);
 
             for (var i = 0; i < 10; i++) {
                 top[i] = response.artists.artist[i].name;

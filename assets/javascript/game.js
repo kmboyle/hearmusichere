@@ -32,9 +32,6 @@ $(document).ready(function() {
     //artists unique 'ID' and use that in a 3rd AJAX call to get similar artist shows around Charlotte.
     //This last AJAX call also saves the coordinates and assigns a unique marker to the event on the map.
     function eventFinder() {
-        //seatgeek.com
-        //Your app secret is "46c31bd5bf11fe8eaa278a35e076ade5cdb8137dbf40eade638b75b55f7612f8" 
-        //- copy now as it can't be retrieved later.
 
         var artist;
         var artistID;
